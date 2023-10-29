@@ -1,0 +1,50 @@
+* {
+  transition: 2sec;
+}
+
+/*makes a circle*/
+/* .box {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  border: 1px solid black;
+} */
+
+header {
+  background-color: green;
+  display: inline;
+}
+/* 
+.box {
+  width: 100px;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 20px;
+  background-color: orange;
+}*/
+
+/* 
+translate property
+.box {
+  transform: translate(50px, 100px);
+  transform: skew(5deg, 240deg);
+  background-color: orange;
+} */
+
+.box {
+  transform: rotate(45deg) translate(100px);
+  background-color: orange;
+}
+.btm-bar {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  background-color: palegoldenrod;
+  height: 50px;
+}
+
+.box {
+  transition: 9000ms;
+}
+/* Transform-origin */
