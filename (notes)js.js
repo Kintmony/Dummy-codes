@@ -197,6 +197,15 @@ var x = person.age;
 var y = person["age"];
 
 // length property to count the number of characters in a string(property)
-var one ={ name:'John Doe', age:31}
-document.write(person.name.length)
+var one = { name: "John Doe", age: 31 };
+document.write(person.name.length);
 
+/*Object method*/
+//refers to a property that contains a function definition. methods are functions that are stored as object properties
+var cuboid = {
+  height: 10,
+  width: 12,
+  length: 8,
+};
+// the cuboid object property is accessed as shown below using dot notation 
+console.log(cuboid.length * cuboid.width * cuboid.height);
