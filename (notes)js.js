@@ -25,13 +25,13 @@ let Purchase = 500;
 function discount() {
   if (Purchase >= 1500) {
     let discounted = Purchase * 0.85;
-    console.log(`Purchase valid for discount of value ${discounted}`)
+    console.log(`Purchase valid for discount of value ${discounted}`);
   } else {
     console.log(`Purchase of ${Purchase} not valid for discount`);
   }
 }
 
-discount(200)
+discount(200);
 
 // //function to find the max number from a list of numbers
 // function find_max(nums) {
@@ -182,3 +182,21 @@ discount(200)
 //   }
 //   console.log(i);
 // }
+
+/****Objects ****/
+//Objects can be referred to as variables but are containers of many values(with values written as "name:value" pairs), where "name" is a property of the object
+//sample object
+var person = {
+  name: "John Doe",
+  age: 31,
+  address: "1st Street",
+};
+
+//Accessing object properties
+var x = person.age;
+var y = person["age"];
+
+// length property to count the number of characters in a string(property)
+var one ={ name:'John Doe', age:31}
+document.write(person.name.length)
+
