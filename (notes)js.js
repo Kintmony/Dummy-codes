@@ -1,37 +1,37 @@
 /*FUNCTIONS */
-function lgon(/*parameters */) {
-  console.log("hi");
-}
+// function lgon(/*parameters */) {
+//   console.log("hi");
+// }
 
-lgon(); //function call
+// lgon(); //function call
 
-function signup(User) {
-  console.log(`hi ${User}`);
-}
-signup("Tmony");
+// function signup(User) {
+//   console.log(`hi ${User}`);
+// }
+// signup("Tmony");
 
-function double(num) {
-  console.log(num * 2);
-}
+// function double(num) {
+//   console.log(num * 2);
+// }
 
 // variables created outside the function can also be parameters as shown in code below
-function login(user) {
-  console.log(`Hi, ${user}`);
-}
-let myUser = `Tmony`;
-login(myUser);
+// function login(user) {
+//   console.log(`Hi, ${user}`);
+// }
+// let myUser = `Tmony`;
+// login(myUser);
 
-let Purchase = 500;
-function discount() {
-  if (Purchase >= 1500) {
-    let discounted = Purchase * 0.85;
-    console.log(`Purchase valid for discount of value ${discounted}`);
-  } else {
-    console.log(`Purchase of ${Purchase} not valid for discount`);
-  }
-}
+// let Purchase = 500;
+// function discount() {
+//   if (Purchase >= 1500) {
+//     let discounted = Purchase * 0.85;
+//     console.log(`Purchase valid for discount of value ${discounted}`);
+//   } else {
+//     console.log(`Purchase of ${Purchase} not valid for discount`);
+//   }
+// }
 
-discount(200);
+// discount(200);
 
 // //function to find the max number from a list of numbers
 // function find_max(nums) {
@@ -80,7 +80,7 @@ discount(200);
 //   }
 // }
 
-/* SWITCH CASES!!!!!!!!! */
+/****************************SWITCH CASES!!!!!!!!! */
 //switch expression is evaluated once, even though the same code can be written using if-else statements, switch cases makes the code more readable and organised(best coding practice)
 // let choice = 1;
 // switch (choice) {
@@ -98,7 +98,7 @@ discount(200);
 //     console.log("not found!");
 // }
 
-// TERNARY OPERATOR
+// ****************************TERNARY OPERATOR
 // let num = "1";
 // num == 1 ? console.log(`${num} is valid`) : console.log(`${num} is not valid`);
 
@@ -183,29 +183,102 @@ discount(200);
 //   console.log(i);
 // }
 
-/****Objects ****/
+/**************************Objects ****/
 //Objects can be referred to as variables but are containers of many values(with values written as "name:value" pairs), where "name" is a property of the object
 //sample object
-var person = {
-  name: "John Doe",
-  age: 31,
-  address: "1st Street",
-};
+// var person = {
+//   name: "John Doe",
+//   age: 31,
+//   address: "1st Street",
+// };
 
 //Accessing object properties
-var x = person.age;
-var y = person["age"];
+// var x = person.age;
+// var y = person["age"];
 
-// length property to count the number of characters in a string(property)
-var one = { name: "John Doe", age: 31 };
-document.write(person.name.length);
+//length property to count the number of characters in a string(property)
+// var one = { name: "John Doe", age: 31 };
+// document.write(person.name.length);
 
-/*Object method*/
+/*********************Object method(object literal/initializer)*/
 //refers to a property that contains a function definition. methods are functions that are stored as object properties
-var cuboid = {
-  height: 10,
-  width: 12,
-  length: 8,
-};
-// the cuboid object property is accessed as shown below using dot notation 
-console.log(cuboid.length * cuboid.width * cuboid.height);
+// var cuboid = {
+//   height: 10,
+//   width: 12,
+//   length: 8,
+// };
+// // the cuboid object property is accessed as shown below using dot notation
+// console.log(cuboid.length * cuboid.width * cuboid.height);
+
+/**********************OBJECT CONSTRUCTOR */
+//allows you to set an object type that can be used to create anumber of objects of a single type. the standard way of creating an object type is to usee an object constructor function
+
+// function person(name, age, address) {
+//   this.name = name;
+//   this.age = age;
+//   this.address = address;
+// }
+//the above function(person) is called an object constructor. It takes the specified parameters and assigns them to the properties using the "this" keyword
+
+//once an object constructor is created, it can be called using the "new" keyword and used to create objects.
+// var p1 = new person("Peter Fletcher", 412, "Full-Remote");
+// var p2 = new person("James Fletcher", 22, "Full-Remote");
+// console.log(p1); //display object on cosnole
+// document.write(p2); // used for HTML document.. not showing on console.
+
+// function car(Manufacturer, Model, Prize) {
+//   this.Manufacturer = Manufacturer;
+//   this.Model = Model;
+//   this.Prize = Prize;
+// }
+
+// const car1 = new car("Ferrari", "Fxx", "$200,000");
+// console.log(car1);
+/**ACCESSING OBJECT PROPERTIES */
+//properties can be accessed using the dot notation
+// console.log(car1.Model, car1.Prize);/* option 1 */
+// properties can also be accessed using the below accessing syntax
+// console.log(car1['Manufacturer'])/* option 2 */
+
+/*************************METHODS */
+/*functions stored as object properties, NB: a method is a function belonging to an object and can referrenced using the "this" keyword to access the objects properties. the methods are defined inside the object constructor function*/
+function user(name, age) {
+  this.name = name;
+  this.age = age;
+  this.changename = function (name) {
+    this.name = name;
+  };
+}
+
+let user1 = new user("Kujo", 21);
+console.log(user1["name"]); //before c
+user1.changename("Tmony");
+console.log(user1.name);
+
+function shopping(items, price) {
+  this.items = items;
+  this.price = price;
+  this.discount = discountPrice; // method outside constructor
+}
+// methods can also be defined outside the constructor function
+function discountPrice() {
+  if (price >= 1500) {
+    return this.price * 0.8;
+  }
+}
+
+let shop1 = new shopping(21, 1500);
+console.log(shop1);
+
+/* CONTACT APP coding challenge */
+function contact(name, number) {
+  this.name = name;
+  this.number = number;
+  this.print = function () {
+    console.log(`${name}: ${number}`);
+  };
+}
+let c1 = new contact("John", 255557659);
+let c2 = new contact("Pete", 550558585);
+c1.print();
+c2.print();
