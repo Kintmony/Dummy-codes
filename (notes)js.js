@@ -329,5 +329,16 @@
 // console.log(Math.sqrt(81));
 
 /**DATE OBJECT */
-let date = new Date();
-alert(date.getMinutes());
+// let date = new Date();
+// alert(date.getMinutes());
+
+/** store manager coding challenge */
+function main() {
+  var increase = parseInt(prompt(`enter a number`), 10);
+  let prices = [98.99, 15.2, 20, 1026];
+  for (let i = 0; i < prices.length; i++) {
+    prices[i] += increase;
+  }
+  console.log(prices);
+}
+main();
