@@ -242,43 +242,92 @@
 
 /*************************METHODS */
 /*functions stored as object properties, NB: a method is a function belonging to an object and can referrenced using the "this" keyword to access the objects properties. the methods are defined inside the object constructor function*/
-function user(name, age) {
-  this.name = name;
-  this.age = age;
-  this.changename = function (name) {
-    this.name = name;
-  };
-}
+// function user(name, age) {
+//   this.name = name;
+//   this.age = age;
+//   this.changename = function (name) {
+//     this.name = name;
+//   };
+// }
 
-let user1 = new user("Kujo", 21);
-console.log(user1["name"]); //before c
-user1.changename("Tmony");
-console.log(user1.name);
+// let user1 = new user("Kujo", 21);
+// console.log(user1["name"]); //before c
+// user1.changename("Tmony");
+// console.log(user1.name);
 
-function shopping(items, price) {
-  this.items = items;
-  this.price = price;
-  this.discount = discountPrice; // method outside constructor
-}
-// methods can also be defined outside the constructor function
-function discountPrice() {
-  if (price >= 1500) {
-    return this.price * 0.8;
-  }
-}
+// function shopping(items, price) {
+//   this.items = items;
+//   this.price = price;
+//   this.discount = discountPrice; // method outside constructor
+// }
+// // methods can also be defined outside the constructor function
+// function discountPrice() {
+//   if (price >= 1500) {
+//     return this.price * 0.8;
+//   }
+// }
 
-let shop1 = new shopping(21, 1500);
-console.log(shop1);
+// let shop1 = new shopping(21, 1500);
+// console.log(shop1);
 
-/* CONTACT APP coding challenge */
-function contact(name, number) {
-  this.name = name;
-  this.number = number;
-  this.print = function () {
-    console.log(`${name}: ${number}`);
-  };
-}
-let c1 = new contact("John", 255557659);
-let c2 = new contact("Pete", 550558585);
-c1.print();
-c2.print();
+// /* CONTACT APP coding challenge */
+// function contact(name, number) {
+//   this.name = name;
+//   this.number = number;
+//   this.print = function () {
+//     console.log(`${name}: ${number}`);
+//   };
+// }
+// let c1 = new contact("John", 255557659);
+// let c2 = new contact("Pete", 550558585);
+// c1.print();
+// c2.print();
+
+/********************************************************* */
+
+/**ARRAYS */
+//arrays store multiple values in a variable['new Array' are the keywords for creating an array]
+// let courses = new Array("html", "css", "js");
+//Accessing an Array(arrays are accessed through their indexes starting count from "0" as are with indexes.
+//courses[0] = "Reactjs"; //<-- selects the first value which is index "0" and sets it to Reactjs.
+// console.log(courses);
+//Declaring array with fixed size
+// let course = new Array(3); //<-- creates an array with space for three elements.[0,1,2]<-- Indexes for 3 values.
+
+/**ARRAY LITERAL (recommended way to declare arrays*/
+// let languages = ["html", "css", "javascript"];
+
+/**ARRAY properties and methods */
+//length property returns the number of elements in the array. It returns "0" when the array is empty. NB:AN ARRAY IS CONSIDERED AN OBJECT IN JS
+// console.log(courses.length);
+
+//combining arrays with "concat()" method
+// let c1 = ["abc"];
+// let c2 = ["def"];
+// let c3 = ["ghi"];
+// let alphabets = c1.concat(c2, c3); // combines specified arrays into new array(alphabets)
+// console.log(alphabets);
+
+//***************ASSOCIATIVE ARRAYS */
+//NB; Javascript does not support associative arrays, however a named array syntax.
+// let person = []; // treated as object
+// person["name"] = "john"; //property of person(named index)
+// person["age"] = 46; //property of person(named index)
+// console.log(person["age"]);// the use of the default indexes ie. "0,1.." returns undefined. Also "person" is now treated just as an object!!!
+/**simply put, associative arrays in Js are treated just like objects. However it is not a good practice and hence should not be adopted */
+
+/**THE MATH OBJECT */
+// console.log(Math.PI);
+// //random number generation(quick coding challenge)
+// function randNum(num) {
+//   if ((num > 0, num <= 10)) {
+//     console.log(`random number is: ${Math.ceil(Math.random() * 10)}`);
+//   }
+//   console.log(`enter a number greater than 0`);
+// }
+// randNum(5);
+// console.log(Math.sqrt(81));
+
+/**DATE OBJECT */
+let date = new Date();
+alert(date.getMinutes());
