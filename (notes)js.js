@@ -333,12 +333,45 @@
 // alert(date.getMinutes());
 
 /** store manager coding challenge */
-function main() {
-  var increase = parseInt(prompt(`enter a number`), 10);
-  let prices = [98.99, 15.2, 20, 1026];
-  for (let i = 0; i < prices.length; i++) {
-    prices[i] += increase;
+// function main() {
+//   var increase = parseInt(prompt(`enter a number`), 10);
+//   let prices = [98.99, 15.2, 20, 1026];
+//   for (let i = 0; i < prices.length; i++) {
+//     prices[i] += increase;
+//   }
+//   console.log(prices);
+// }
+// main();
+
+/**DOCUMENT OBJECT MODEL(DOM)
+/webpages are loaded and rendered using an object oriented model of its logical structure(DOM). DOM tree refers to the nodes which have some kind of relationship with each other and make up the DOM. Nodes can have siblings(node on the same level), children(nodes below) and parents(nodes above).NB:it is vital to understand the relationship between elements in order to manipulate them using Js.*/
+//the "document" object is a predefined object which is used to access all elements in the DOM. it always starts the syntax used in accessing elements in the DOM.---
+//document.body.innerHTML = "something here"; <--this is to change the content of the "innerHTML" property
+
+//SELECTING ELEMENTS(the document object has methods that enable desired HTML elements to be selected)
+/*document.getElementById();
+document.getElementsByClassName();*/
+// let elem = document.getElementById("demo");
+// elem.innerHTML = "Hello World";
+
+/**IMAGE SLIDER */
+var images = ["./images/1.jpg", "./images/2.jpg", "./images/3.jpg"];
+var num = 0;
+
+function next() {
+  var slider = document.getElementById("slider");
+  num++;
+  if (num >= images.length) {
+    num = 0;
   }
-  console.log(prices);
+  slider.src = images[num];
 }
-main();
+
+function prev() {
+  var slider = document.getElementById("slider");
+  num--;
+  if (num < 0) {
+    num = images.length - 1;
+  }
+  slider.src = images[num];
+}
