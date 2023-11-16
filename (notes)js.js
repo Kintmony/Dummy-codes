@@ -355,23 +355,369 @@ document.getElementsByClassName();*/
 // elem.innerHTML = "Hello World";
 
 /**IMAGE SLIDER */
-var images = ["./images/1.jpg", "./images/2.jpg", "./images/3.jpg"];
-var num = 0;
+// var images = ["./images/1.jpg", "./images/2.jpg", "./images/3.jpg"];
+// var num = 0;
 
-function next() {
-  var slider = document.getElementById("slider");
-  num++;
-  if (num >= images.length) {
-    num = 0;
+// function next() {
+//   var slider = document.getElementById("slider");
+//   num++;
+//   if (num >= images.length) {
+//     num = 0;
+//   }
+//   slider.src = images[num];
+// }
+
+// function prev() {
+//   var slider = document.getElementById("slider");
+//   num--;
+//   if (num < 0) {
+//     num = images.length - 1;
+//   }
+//   slider.src = images[num];
+// }
+/**---------------------------intro to ECMAScript (6) => { ES6 } which introduced new conventions and OOP concepts. In ES6 there are three ways of declaring variables "var","const", and "let" and is influenced by the scope of the variable. "var" defines a variable globally and "let" declares variables limited to the block, statement or epression its been used.  */
+//eg using var
+// if (true) {
+//   var name = `Jack`;
+// }
+// alert(name); //generates the alert succesfully
+
+// if (true) {
+//   let names = [`Esi`, `Kujo`];
+// }
+// alert(names); //generates an error on console
+
+/*LOOPS in ES6*/
+
+/**FUNCTIONS IN ES6 */
+//computed property names: allows the creation of objects based on user data.
+// let prop = `name`;
+// let id = `1234`;
+// let mobile = `12314`;
+// let user = {
+//   [prop]: `user`,
+//   [`user${id}`]: `${mobile}`,
+// };
+//eg 2. allows concatenations to be used in naming a property ie.( [`mobile` + ...])
+// var param = `size`;
+// var config = {
+//   [param]: 12,
+//   [`mobile` + param.charAt(0).toUpperCase() + param.slice(1)]: 3,
+// };
+// console.log(config.mobileSize);
+
+/*OBJECT DESTRUCTURING IN ES6*/
+const obj = { one: 1, two: 2 };
+let { one: first, two: second } = obj;
+//console.log(one); //error as variable has be renamed to first.
+console.log(first + ` destructured!!!!!!!!!!!`); // execute
+
+//ES6 Rest Parameters
+//<!--start highlighting from here to remove comment-->
+
+// function magic(...nums) {
+//   let sum = 0;
+//   nums.filter((n) => n % 2 == 0).map((el) => (sum += el));
+//   return sum; // the filter method creates a new array with the elements that satisfy the condition given by the function || the map method creates a new array with the results of the "n%2 ==0" which is then summed up.
+// }
+// console.log(magic(1, 2, 3, 4, 5, 6)); // returns the sum of even numbers.
+
+// //Spread operator in function calls
+// //without spread
+// function myFunction(w, x, y, z) {
+//   console.log(w + x + y + z);
+// }
+// var args = [1, 2, 3];
+// myFunction.apply(null, args.concat(4));
+// //with spread operator
+// function myFunction(w, x, y, z) {
+//   console.log(w + x + y + z);
+// }
+// var args = [1, 2, 3];
+// myFunction(...args, 4);
+
+// //spread operator in array literals
+// //without spread operator
+// var arr = [`One`, `Two`, `Three`];
+// arr.splice(2, 0, `nine`); //replaces "three" with "nine" causing "three" to move to end of array
+// arr.splice(3, 0, `ten`); // adds "ten" to the array
+// console.log(arr);
+// //NB:splice() removes a elemenst from an array and replaces them if specified
+
+// //with spread
+// let newArr = [`Four`, `Five`, `Six`];
+// let arrr = [`One`, `Two`, `Three`, ...newArr, `Seven`];
+// console.log(arrr);
+// //coding challenge below--> what's the output?
+// let nums = [3, 4, 5];
+// let all = [1, 2, ...nums, 6];
+// console.log(all[3]);
+
+/**CLASSES IN ES6 */
+//class can be used to create multiple objects of the same structure.
+class box {
+  constructor(height, width) {
+    //the constructor is a special method used to create and initialize an object created in a class and there can be ONLY ONE constructor in a class.
+    this.height = height;
+    this.width = width;
   }
-  slider.src = images[num];
+}
+//above class can be used to create multiple objects using the keyword "new"
+const Rec = new box(4, 2);
+//class declarations are not hoisted and hence a class cannot be accessed before it's declared.
+
+//CLASS METHODS IN ES6
+//prototype class method
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  get area() {
+    //getter
+    return this.calcArea();
+  }
+  calcArea() {
+    //method
+    return this.height * this.width;
+  }
+}
+const rec1 = new Rectangle(5, 6);
+console.log(rec1.area);
+//static method. cannot be called through a class instance. often used to create utility functions
+//the below method is used to find the distance between two points
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  static distance(a, b) {
+    //defined as a static method hence should be called on the class itself, not on the instance of the class
+    const dx = a.x - b.x;
+    const dy = a.y - b.y;
+    return Math.hypot(dx, dy);
+  }
+}
+const p1 = new Point(7, 2);
+const p2 = new Point(10, 2);
+console.log(Point.distance(p1, p2));
+
+//coding challenge
+class dog {
+  constructor(name) {
+    this.name = name;
+  }
+  bark() {
+    console.log(this.name + " barks.");
+  }
 }
 
-function prev() {
-  var slider = document.getElementById("slider");
-  num--;
-  if (num < 0) {
-    num = images.length - 1;
+let d = new dog("Rex");
+d.bark();
+
+//INHERITANCE IN ES6
+//the extend keyword is used to create a child of a class. The child inherits the properties and methods of the parent.
+class Animal {
+  constructor(name) {
+    this.name = name;
   }
-  slider.src = images[num];
+  speak() {
+    console.log(this.name + ` makes a noise.`);
+  }
+}
+// child class which inherits from Animal class
+class Dog extends Animal {
+  speak() {
+    super.speak(); //called the parent "speak()" method
+    console.log(this.name + ` barks`);
+  }
+}
+let dog1 = new Dog(`Tom`);
+dog1.speak();
+
+//coding challenge
+class Human {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+class student extends Human {
+  constructor(name, age) {
+    super(name);
+    this.age = age;
+  }
+}
+
+let stud1 = new student(`Nick`, 12);
+console.log(stud1);
+
+//ES6 MAPS AND SETS
+//map objects can be used to hold key-value pairs. map creates an array or object whose elements are arrays.NB: keys can be of any type from functions to any primitive, can directly iterate over a map, and map performance is better in situations involving frequent addition and removal of key-value pairs
+
+let map = new Map([
+  [`k1`, `v1`], //key-value pair
+  [`k2`, `k2`],
+]);
+console.log(`the map is of size ` + map.size);
+
+//demonstration of some map methods
+
+let map1 = new Map([
+  [`k0`, `v0`],
+  [`k3`, `k3`],
+]);
+map1.set(`k5`, `v5`).set(`k9`, `v9`);
+console.log(map1.get(`k9`));
+console.log(map1.get(`k0`));
+
+for (let kv of map1.entries()) console.log(kv[0] + " : " + kv[1]);
+//maps support different data types
+
+const map3 = new Map();
+map3.set(`one`, 1).set(`2`, `two`);
+if (map.has(`two`)) {
+  console.log(`two`);
+} else {
+  console.log(map3.get(`one`));
+}
+
+//ES6 SET: object can be used to hold unique values(no duplicates are allowed).
+let set = new Set([1, 2, 4, 3, 5, 6, 7, 8]);
+console.log(set.size);
+//ES6 SET METHODS:
+let set1 = new Set();
+set1.add(5).add(9).add(59);
+console.log(set1.has(5));
+
+for (let v of set1.values()) console.log(v);
+
+//coding challenge
+const set3 = new Set();
+set3.add(1).add(2).add(3);
+for (let v of set3.values()) console.log(v);
+
+//ES6 PROMISES: is a more preferred way for asynchronous programming when compared to the common way of using a "setTimeout()"
+//setTimeout() PROMISE asynchronous syntax
+setTimeout(function () {
+  console.log("work 1");
+  setTimeout(function () {
+    console.log("work 2");
+  }, 1000);
+}, 1000);
+console.log(`end`);
+
+//ES6 PROMISE
+// new Promise(function (resolve, reject) {
+//   //work
+//   if (success) resolve(result);
+//   else reject(Error("failed"));
+// });
+
+//method that returns a promise
+function asyncFunc(work) {
+  return new Promise(function (resolve, reject) {
+    if (work === "") reject(Error("Nothing"));
+    setTimeout(function () {
+      resolve(work);
+    }, 1000);
+  });
+}
+
+asyncFunc("Work 101") //Task 1
+  .then(
+    (result) => {
+      console.log(result);
+      return asyncFunc("Work 202");
+    },
+    function (error) {
+      console.log(error);
+    }
+  )
+  .then(
+    function (result) {
+      console.log(result);
+    },
+    function (error) {
+      console.log(error);
+    }
+  );
+
+console.log("End");
+
+//ITERATORS AND GENERATORS
+//Symbol.iterator is the default iterator for an object. The for..of loops are based on this type of iterator.
+//GENERATOR FUNCTION DEMONSTRATION
+let myIterableObj = {
+  [Symbol.iterator]: function* () {
+    yield 1;
+    yield 2;
+    yield 3;
+  },
+};
+console.log([...myIterableObj]);
+
+//object creation using Symbol.iterator and filling with generator function
+
+function* idMaker() {
+  let index = 0;
+  while (index < 5) yield index++;
+}
+var gen = idMaker();
+console.log(gen.next().value); // subsequent calls will log the other values to console
+
+/*MODULES. considerations when using modules include *maintainability* ie.=> a module is independent of other modules. *namespacing* modules create a private space for variables to prevent namespace pollution as a result of variable scope. *reusability* modules allow different parts of code to be used in other projects*/
+
+//Modules demonstration
+//written in a file separate from app.js eg math.js
+// export let sum = (x, y) => {
+//   return x + y;
+// };
+// export let pi = 3.14;
+
+//called in app.js
+// import *as math from math.js
+// console.log(`2p= +${math.sum(math.pi,math.pi)}`)
+//NB: some browsers do not support modules natively hence the use of bundlers such as webpack or Browserfly are used to run the code
+
+//NOTE AND STUDY ES6 BUILT-IN METHODS(arrays...)
+//searching strings in ES6
+"Testimony".includes("test");
+
+//locating elements in array and repeating them
+const arrr = ["3", "4", "98"];
+console.log(arrr.find((x) => x == "4").repeat(2));
+
+//coding challenge on spread operator
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6, 7, 8];
+let arr3 = [...arr1, 4, ...arr2];
+console.log(arr3);
+
+const arrr1 = [1, 2, 3, 4, 5];
+const arrr2 = [...arrr1, 6];
+const func = (...rest) => {
+  console.log(rest.length);
+};
+func(...arrr1);
+func(...arrr2);
+
+//coding challenge on arrow function
+const square = (num) => num * num;
+console.log(square(6) + 6);
+
+//coding challenge on object destructuring
+const user = {
+  name: "David",
+  age: 28,
+  id: 1234,
+};
+let newUser = Object.assign({}, ({ name, age } = user), { id: 9999 });
+console.log(newUser);
+
+let newMap = new Map();
+newMap.set(`zero`, 0);
+newMap.set(`one`, 1);
+for (let [key, value] of newMap) {
+  console.log(`key: ${key}, value: ${value}`);
 }

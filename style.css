@@ -4,14 +4,18 @@
 }
 body {
   margin: 0 auto;
-  background:grad
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 .cardOuter {
   display: flex;
   flex-direction: column;
   background-color: aquamarine;
   padding: 30px;
-  margin: 35% auto;
   width: 180px;
   border-radius: 20px;
   box-shadow: 5px 10px 10px #8888;
